@@ -9,6 +9,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class CrearProductoComponent implements OnInit {
 
     productoForm: FormGroup;
+    titulo:string="CREAR PRODUCTO"
 
     constructor(private fb: FormBuilder) {
         this.productoForm = this.fb.group({
@@ -26,5 +27,7 @@ export class CrearProductoComponent implements OnInit {
     agregarProducto() {
         console.log(this.productoForm);
     }
+
+
 
 }
