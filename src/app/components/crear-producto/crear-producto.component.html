@@ -5,25 +5,29 @@
                 <div class="card-body text-center">
                     <span class="titulo">CREAR PRODUCTO</span>
 
-                    <form class="mt-3 p-3">
+                    <form class="mt-3 p-3" [formGroup]="productoForm" (ngSubmit)="agregarProducto()">
                         <div class="mb-3">
-                            <input type="text" class="form-control form-control-lg border border-info" placeholder="producto">
+                            <input type="text" formControlName="producto"
+                                class="form-control form-control-lg border border-info" placeholder="producto">
                         </div>
                         <div class="mb-3">
-                            <input type="text" class="form-control form-control-lg border border-info" placeholder="categoria">
+                            <input type="text" formControlName="categoria"
+                                class="form-control form-control-lg border border-info" placeholder="categoria">
                         </div>
                         <div class="mb-3">
-                            <input type="text" class="form-control form-control-lg border border-info" placeholder="ubicación">
+                            <input type="text" formControlName="ubicacion"
+                                class="form-control form-control-lg border border-info" placeholder="ubicación">
                         </div>
                         <div class="mb-3">
-                            <input type="number" class="form-control form-control-lg border border-info" placeholder="precio">
+                            <input type="number" formControlName="precio"
+                                class="form-control form-control-lg border border-info" placeholder="precio">
+                        </div>
+                        <div class="mb-3 p-3 pb-5 bg-light">
+                            <button routerLink="/" class="btn btn-outline-secondary btn-group-sm float-start">Volver</button>
+                            <button type="submit" class="btn btn-outline-success btn-group-sm float-end" >Aceptar</button>
                         </div>
                     </form>
 
-                    <div class="mb-3 p-3 pb-5 bg-light">
-                        <button routerLink="/" class="btn btn-outline-secondary btn-group-sm float-start"> < Volver </button>
-                        <button class="btn btn-outline-success btn-group-sm float-end">Aceptar</button>
-                    </div>
                 </div>
             </div>
         </div>
