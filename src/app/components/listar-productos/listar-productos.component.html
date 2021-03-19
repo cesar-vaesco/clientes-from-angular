@@ -22,7 +22,7 @@
                                 <td>{{producto.categoria | titlecase}}</td>
                                 <td>{{producto.ubicacion | titlecase}}</td>
                                 <td>{{producto.precio | currency: 'USD' }}</td>
-                                <td><i class="fas fa-edit text-primary"></i>
+                                <td><i [routerLink]="['/editar-producto', producto._id]" class="fas fa-edit text-primary"></i>
                                     <i (click)="eliminarProducto(producto._id)" class="far fa-trash-alt text-danger"></i>
                                 </td>
                             </tr>
