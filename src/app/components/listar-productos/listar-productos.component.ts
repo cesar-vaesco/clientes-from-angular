@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { Producto } from 'src/app/models/producto';
 import { ProductoService } from '../../services/producto.service';
 
@@ -13,7 +14,8 @@ export class ListarProductosComponent implements OnInit {
 
     listProductos: Producto[] = [];
 
-    constructor(private productoService: ProductoService) { }
+    constructor(private productoService: ProductoService,
+        private toastr: ToastrService) { }
 
     ngOnInit(): void {
 
@@ -28,8 +30,17 @@ export class ListarProductosComponent implements OnInit {
 
         }, error => {
             console.log(error)
-        }
-        )
+        })
+    }
+
+    eliminarProducto(id: any) {
+        this.productoService.eliminarProducto(id).subscribe(data => {
+            this.toastr.error('El producto fue eliminado con éxito! :) ', 'Producto eliminado');
+            this.obtenerProductos();
+        }, error => {
+            this.toastr.error(' :(  El producto fue encontrado!', 'Producto no fue eliminado');
+            console.log(error);
+        })
     }
 
 }

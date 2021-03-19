@@ -18,17 +18,18 @@
                         </thead>
                         <tbody>
                             <tr class="fav" *ngFor="let producto of listProductos">
-                                <th>{{producto.nombre}}</th>
-                                <td>{{producto.categoria}}</td>
-                                <td>{{producto.ubicacion}}</td>
+                                <th>{{producto.nombre | titlecase}}</th>
+                                <td>{{producto.categoria | titlecase}}</td>
+                                <td>{{producto.ubicacion | titlecase}}</td>
                                 <td>{{producto.precio | currency: 'USD' }}</td>
-                                <td><i class="fas fa-edit text-primary"></i><i class="far fa-trash-alt text-danger"></i>
+                                <td><i class="fas fa-edit text-primary"></i>
+                                    <i (click)="eliminarProducto(producto._id)" class="far fa-trash-alt text-danger"></i>
                                 </td>
                             </tr>
 
                         </tbody>
                     </table>
-                    <h5 class="text-danger text-center mt-1" *ngIf="listProductos.length >0">No hay productos para mostrar</h5>
+                    <h5 class="text-danger text-center mt-1" *ngIf="listProductos.length == 0">No hay productos para mostrar</h5>
                 </div>
             </div>
         </div>
