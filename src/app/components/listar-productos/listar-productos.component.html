@@ -4,8 +4,9 @@
             <div class="card bg-light">
                 <div class="card-body text-center">
                     <span class="titulo">{{titulo}}</span>
-                    <button class="btn btn-outline-success btn-group-sm float-end" routerLink="/crear-producto">Nuevo</button>
-                    <table class="table table-striped mt-4">
+                    <button class="btn btn-outline-success btn-group-sm float-end"
+                        routerLink="/crear-producto">Nuevo</button>
+                    <table *ngIf="listProductos.length > 0" class="table table-striped mt-4">
                         <thead>
                             <tr>
                                 <th scope="col">Producto</th>
@@ -16,24 +17,18 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="fav">
-                                <th>Coca-cola</th>
-                                <td>Bebida</td>
-                                <td>Buenos aires</td>
-                                <td>$2</td>
-                                <td><i class="fas fa-edit text-primary"></i><i class="far fa-trash-alt text-danger"></i></td>
-                                <td></td>
+                            <tr class="fav" *ngFor="let producto of listProductos">
+                                <th>{{producto.nombre}}</th>
+                                <td>{{producto.categoria}}</td>
+                                <td>{{producto.ubicacion}}</td>
+                                <td>{{producto.precio | currency: 'USD' }}</td>
+                                <td><i class="fas fa-edit text-primary"></i><i class="far fa-trash-alt text-danger"></i>
+                                </td>
                             </tr>
-                            <tr>
-                                <th>Marlboro 20</th>
-                                <td>Cigarros</td>
-                                <td>Barcelona</td>
-                                <td>$3</td>
-                                <td><i class="fas fa-edit text-primary"></i><i class="far fa-trash-alt text-danger"></i></td>
-                            </tr>
+
                         </tbody>
                     </table>
-
+                    <h5 class="text-danger text-center mt-1" *ngIf="listProductos.length >0">No hay productos para mostrar</h5>
                 </div>
             </div>
         </div>
