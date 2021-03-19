@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { Producto } from 'src/app/models/producto';
 import { ProductoService } from '../../services/producto.service';
@@ -19,6 +20,7 @@ export class CrearProductoComponent implements OnInit {
     constructor(private fb: FormBuilder,
         private router: Router,
         private toastr: ToastrService,
+        private spinner: NgxSpinnerService,
         private _productoService: ProductoService,
         private aRouter: ActivatedRoute) {
         this.productoForm = this.fb.group({
@@ -36,6 +38,7 @@ export class CrearProductoComponent implements OnInit {
     }
 
     agregarProducto() {
+        this.spinner.show();
         console.log(this.productoForm);
         console.log(this.productoForm.get('producto')?.value);
 
@@ -49,10 +52,17 @@ export class CrearProductoComponent implements OnInit {
         if (this.id !== null) {
             // Editamos producto
             this._productoService.editarProducto(this.id, PRODUCTO).subscribe(data => {
-                this.toastr.info(`El producto ' ${PRODUCTO.nombre} ' fue actualizado con éxito!(^・ω・^ )`, 'Producto actualizado!', {
-                    timeOut: 4000,
+
+                this.toastr.info(`El producto ' ${PRODUCTO.nombre} ' fue actualizado con éxito!(^・ω・^ )`, 'Producto actualizado!',{
+                    timeOut: 2500,
                 });
-                this.router.navigate(['/']);
+
+                setTimeout(() => {
+                    this.spinner.hide();
+                    this.router.navigate(['/']);
+                }, 2000);
+
+
             }, error => {
                 this.toastr.error('El producto NO fue editado!', '¯\_(ツ)_/¯');
                 console.log(error);
@@ -68,7 +78,10 @@ export class CrearProductoComponent implements OnInit {
                 this.toastr.success(`El producto ' ${PRODUCTO.nombre} ' fue registrado con éxito!`, 'Producto registrado!', {
                     timeOut: 4000,
                 });
-                this.router.navigate(['/']);
+                setTimeout(() => {
+                    this.spinner.hide();
+                    this.router.navigate(['/']);
+                }, 2000);
             }, error => {
                 this.toastr.error('El producto NO fue creado!', '¯\_(ツ)_/¯');
                 console.log(error);
@@ -95,5 +108,6 @@ export class CrearProductoComponent implements OnInit {
             })
         }
     }
+
 
 }

@@ -10,6 +10,7 @@ import { ListarProductosComponent } from './components/listar-productos/listar-p
 
 import { ToastrModule } from 'ngx-toastr';
 import { HttpClientModule } from '@angular/common/http';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
     declarations: [
@@ -23,7 +24,8 @@ import { HttpClientModule } from '@angular/common/http';
         ReactiveFormsModule,
         BrowserAnimationsModule,
         ToastrModule.forRoot(),
-        HttpClientModule
+        HttpClientModule,
+        NgxSpinnerModule
     ],
     providers: [],
     bootstrap: [AppComponent]
